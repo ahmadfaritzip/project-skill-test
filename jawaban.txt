@@ -3,3 +3,22 @@ Jawaban:
 Soal Query Mysql
 1. SELECT urutan_periode FROM nama_tabel ORDER BY urutan_periode ASC;
 2.
+
+
+Soal Backend
+soal 1 :
+class Worker {
+  constructor(hoursWorked, rate) {
+    this.hoursWorked = hoursWorked;
+    this.rate = rate;
+    this.TAX = 0.15; // misalnya nilai pajak tetap adalah 15%
+  }
+  
+  basicSalary() {
+    return this.hoursWorked * this.rate;
+  }
+
+  overviewSalary() {
+    return this.basicSalary() - this.TAX;
+  }
+}
