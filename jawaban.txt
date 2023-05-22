@@ -1,0 +1,5 @@
+Jawaban:
+
+Soal Query Mysql
+1. SELECT urutan_periode FROM nama_tabel ORDER BY urutan_periode ASC;
+2.
