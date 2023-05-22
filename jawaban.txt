@@ -2,7 +2,32 @@ Jawaban:
 
 Soal Query Mysql
 1. SELECT urutan_periode FROM nama_tabel ORDER BY urutan_periode ASC;
-2.
+2. 
+DELIMITER //
+CREATE PROCEDURE generate_no_transaksi()
+BEGIN
+    DECLARE kode_transaksi CHAR(2);
+    DECLARE tglFormat CHAR(6);
+    DECLARE no_urut INT;
+    DECLARE new_no_transaksi CHAR(12);
+    
+    SET kode_transaksi = 'MH';
+    SET tglFormat = DATE_FORMAT(CURDATE(), '%d%m%y');
+    
+    -- Mengambil no urut transaksi terakhir untuk hari ini
+    SELECT COALESCE(MAX(RIGHT(no_transaksi, 3)), 0) + 1 INTO no_urut
+    FROM tabel_transaksi
+    WHERE LEFT(no_transaksi, 8) = CONCAT(kode_transaksi, tglFormat);
+
+    -- Format nomor transaksi dengan leading zero
+    SET new_no_transaksi = CONCAT(kode_transaksi, tglFormat, LPAD(no_urut, 3, '0'));
+    
+    -- Menyimpan nomor transaksi ke tabel transaksi
+    INSERT INTO tabel_transaksi (no_transaksi) VALUES (new_no_transaksi);
+    
+    SELECT new_no_transaksi;
+END //
+DELIMITER ;
 
 
 Soal Backend
