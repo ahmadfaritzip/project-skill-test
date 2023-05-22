@@ -22,3 +22,30 @@ class Worker {
     return this.basicSalary() - this.TAX;
   }
 }
+
+soal 2:
+function checkError() {
+  let error;
+  
+  if (!OK(Run1())) {
+    error = Run1Err;
+    return;
+  }
+
+  if (!OK(Run2())) {
+    error = Run2Err;
+    return;
+  }
+
+  if (!OK(Run3())) {
+    error = Run3Err;
+    return;
+  }
+
+  if (!OK(Run4())) {
+    error = Run4Err;
+    return;
+  }
+
+  result = 'sukses';
+}
