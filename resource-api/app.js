@@ -13,13 +13,14 @@ const app = express();
 function mysqlConnect() {
   global.connection = mysql.createConnection(connection);
 
-  global.connection.connect(function (err) {
-    if (err) {
-      console.log("error when connecting to db");
-      setTimeout(mysqlConnect, 2000);
-    }
-    console.log("connected to database");
-  });
+  // global.connection.connect(function (err) {
+  //   if (err) {
+  //     console.log("error when connecting to db");
+  //     setTimeout(mysqlConnect, 2000);
+  //   }
+  //   console.log("connected to database");
+  // });
+
   global.connection.on("error", function (err) {
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
       mysqlConnect();
@@ -27,6 +28,7 @@ function mysqlConnect() {
       throw err;
     }
   });
+  
 }
 
 mysqlConnect();
@@ -41,10 +43,11 @@ app.use(cors());
 // Routes
 app.use("/api", noteRoutes);
 
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!");
+});
+
 // PORT
 const port = process.env.PORT || 3000;
 
-// Starting a server
-app.listen(port, () => {
-  console.log(`app is running at ${port}`);
-});
+module.exports = app;

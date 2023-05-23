@@ -7,12 +7,12 @@ const {
   deleteNote,
 } = require("../controllers/noteController");
 
-router.post("/note", createNote);
+router.post("/notes", createNote);
 
-router.get("/note", readNote);
+router.get("/notes", readNote);
 
-router.put("/note/:noteId", updateNote);
+router.put("/notes/:noteId", updateNote);
 
-router.delete("/note/:noteId", deleteNote);
+router.delete("/notes/:noteId", deleteNote);
 
 module.exports = router;
